@@ -1,6 +1,6 @@
 var express = require('express'); 
-    bodyParser = require('body-parser'); 
-    stateHandler = require('./lib/state_handler.js'); 
+var bodyParser = require('body-parser'); 
+var stateHandler = require('./lib/state_handler.js'); 
 
 var app = express(); 
 
