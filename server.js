@@ -12,7 +12,7 @@ app.post('/index', function(req, res, cb){
     console.log("Someone connected to index");
     res.writeHeader(200, {"Content-type":"text/html"});
     res.write("hello world"); 
-    res.end; 
+    res.end(); 
 
     return cb(); 
 }); 
