@@ -11,10 +11,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
 app.post('/index', function(req, res, cb){
+    console.log("Someone connected to index");
+    
     stateHandler(req, function(result){
-        console.log("Someone connected to index");
         res.writeHeader(200, {"Content-type":"text/html"});
-        res.write("hello world"); 
+        res.write(result); 
         res.end(); 
         return cb(); 
     }); 
