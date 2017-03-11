@@ -19,6 +19,3 @@ app.post('/index', function(req, res, cb){
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });
-
-
-
