@@ -1,6 +1,7 @@
 var express = require('express'); 
 var bodyParser = require('body-parser'); 
 var stateHandler = require('./lib/state_handler.js'); 
+var questionTemplate = require('./lib/question_template.js'); 
 
 var app = express(); 
 
@@ -22,7 +23,9 @@ app.post('/index', function(req, res, cb){
 }); 
 
 app.post('/ajouter_question', function(req, res,cb){
-    res.send('You sent the question ' + req.body.question + '.'); 
+    res.send('La question ' + req.body.question + 'a ete entregistree dans la banque de questions.'); 
+    var question = new questionTemplate(req.body.subject, req.body.type, req.body.level, req.body.question, req.body.answer); 
+    res.send(question); 
 }); 
 
 app.listen(app.get('port'), function() {
