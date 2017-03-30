@@ -26,8 +26,13 @@ app.post('/ajouter_question', function(req, res,cb){
     res.send('La question ' + req.body.question + 'a ete entregistree dans la banque de questions.'); 
     var question = new questionTemplate(req.body.subject, req.body.type, req.body.level, req.body.question, req.body.answer); 
     res.send(question); 
-}); 
+});
 
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });
+
+var question = new questionTemplate("maths", "qcm", "facile", "1+1", "2");
+var obj = question.toObj();
+
+console.log(obj);
