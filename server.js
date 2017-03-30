@@ -1,7 +1,7 @@
 var express = require('express'); 
 var bodyParser = require('body-parser'); 
 var stateHandler = require('./lib/state_handler.js'); 
-var questionTemplate = require('./lib/question_template.js'); 
+var questionTemplate = require('./lib/question_template.js');
 
 var app = express(); 
 
@@ -31,8 +31,3 @@ app.post('/ajouter_question', function(req, res,cb){
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });
-
-//var question = new questionTemplate("maths", "qcm", "facile", "1+1", "2");
-//var obj = question.toObj();
-
-//console.log(obj);
