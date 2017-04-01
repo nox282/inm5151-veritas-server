@@ -30,11 +30,11 @@ app.post('/ajouter_question', function(req, res,cb){
 });
 
 app.post('/importer_db', function(req, res, cb){
-    questionDB.import(JSON.parse(req.body), function(result){
+    questionDB.import(req.body, function(result){
         res.writeHeader(200, {"Content-type":"text/html"});
         res.write(result);
         res.end;
-        
+
         return cb();
     });
 });
