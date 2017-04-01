@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var stateHandler = require('./lib/state_handler.js'); 
 var questionTemplate = require('./lib/question_template.js');
 var questionDB = require('./lib/question_db.js');
-
+var queteForm = require('./lib/quest_form.js');
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000)); 
@@ -27,6 +27,21 @@ app.post('/ajouter_question', function(req, res,cb){
     var question = new questionTemplate(req.body.subject, req.body.type, req.body.level, req.body.question, req.body.answer);
     var obj = question.toObj();
     res.send(obj); 
+});
+
+app.get('/get_quest_form', function(req, res, cb){
+    queteForm('/ajouter_quete', function(form){
+        res.writeHeader(200, {"Content-type":"text/html"});
+        res.write(form);
+        res.end;
+
+        return cb();
+    });
+});
+
+app.post('/ajouter_quete', function(req, res, cb){
+    console.log(req.body);
+    res.end;
 });
 
 app.post('/importer_db', function(req, res, cb){
