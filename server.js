@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var stateHandler = require('./lib/state_handler.js'); 
 var questionTemplate = require('./lib/question_template.js'); 
+var questionForm = require('./lib/question_form.js');
+var questionDB = require('./lib/question_db.js');
 
 var app = express(); 
 
@@ -20,6 +22,16 @@ app.post('/index', function(req, res, cb){
         res.end(); 
         return cb(); 
     }); 
+});
+
+app.get('/get_question_form', function(req, res, cb){
+    questionForm('/ajouter_question', function(form){
+        res.writeHeader(200, {"Content-type":"text/html"});
+        res.write(form);
+        res.end;
+
+        return cb();
+    });
 }); 
 
 app.post('/ajouter_question', function(req, res,cb){
@@ -28,11 +40,31 @@ app.post('/ajouter_question', function(req, res,cb){
     res.send(obj); 
 });
 
+app.post('/importer_db', function(req, res, cb){
+    questionDB.import(req.body, function(result){
+        res.writeHeader(200, {"Content-type":"text/html"});
+        res.write(result);
+        res.end;
+
+        return cb();
+    });
+});
+
+app.get('/exporter_db', function(req, res, cb){
+    questionDB.export(function(db){
+        res.writeHeader(200, {"Content-type":"application/json"});
+        res.write(db);
+        res.end;
+
+        return cb();
+    });
+});
+
+app.post('/ajouter_question', function(req, res, cb){
+    console.log(req.body);
+    res.end;
+});
+
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });
-
-//var question = new questionTemplate("maths", "qcm", "facile", "1+1", "2");
-//var obj = question.toObj();
-
-//console.log(obj);
