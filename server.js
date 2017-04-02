@@ -1,7 +1,8 @@
 var express = require('express'); 
 var bodyParser = require('body-parser'); 
 var stateHandler = require('./lib/state_handler.js'); 
-var questionTemplate = require('./lib/question_template.js');
+var questionTemplate = require('./lib/question_template.js'); 
+var questionForm = require('./lib/question_form.js');
 var questionDB = require('./lib/question_db.js');
 
 var app = express(); 
@@ -21,6 +22,16 @@ app.post('/index', function(req, res, cb){
         res.end(); 
         return cb(); 
     }); 
+});
+
+app.get('/get_question_form', function(req, res, cb){
+    questionForm('/ajouter_question', function(form){
+        res.writeHeader(200, {"Content-type":"text/html"});
+        res.write(form);
+        res.end;
+
+        return cb();
+    });
 }); 
 
 app.post('/ajouter_question', function(req, res,cb){
