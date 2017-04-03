@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Veritas-Admin</title>
+        <script>
+            var url = window.location.href;
+            url = url.replace("/index", "");
+            var current_DB = {};
+
+
+            function importDB() {
+                httpGetAsync('/exporter_db', function(objReceived){
+                    current_DB = objReceived;
+                });
+                for(var item in current_DB){
+                    console.log(item + ":" + objReceived[item]);
+                }
+            }
+
+            function httpGetAsync(action, callback) {
+                var xmlHttp = new XMLHttpRequest();
+
+                xmlHttp.onreadystatechange = function() { 
+                
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+                }
+                
+                xmlHttp.open("GET", url+action, true);
+                xmlHttp.send(null);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Interface Administrateur</h1>
+        <h2>Ajouter une question :</h2>
+        
+        <script>
+            document.write("FORM_QUESTION_HERE " + url);
+        </script>
+        
+        <h2>Ajouter une quete :</h2>
+        
+        <script>
+            document.write("FORM_QUESTION_HERE " + url);
+        </script>
+        
+        <div><input type="button" value="IMPORT BD" onclick="importDB()"/> <input type="button" value="EXPORT BD" onclick="importDB()">
+    </body>
+</htlm>

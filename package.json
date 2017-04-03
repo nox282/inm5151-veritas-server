@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.0",
-    "form-builder": "0.0.1"
+    "form-builder": "0.0.1",
+    "fs": "0.0.1-security"
   }
 }

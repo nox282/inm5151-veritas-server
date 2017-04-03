@@ -1,11 +1,14 @@
 
 var express = require('express'),
     bodyParser = require('body-parser'),
+    fs = require('fs'),
     stateHandler = require('./lib/state_handler.js'),
-    questionTemplate = require('./lib/question_template.js'),
     questionDB = require('./lib/question_db.js'),
+    questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
-    questEngine = require('./lib/quest_engine.js');
+    questEngine = require('./lib/quest_engine.js'),
+
+    index = "./lib/html/index.html";
 
 var app = express(); 
 
@@ -15,49 +18,45 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
-app.post('/index', function(req, res, cb){
-    console.log("Someone connected to index");
-    
-    stateHandler(req, function(result){
-        res.writeHeader(200, {"Content-type":"text/html"});
-        res.write(result); 
-        res.end(); 
-        return cb(); 
-    }); 
+app.get('/index', function(req, res, cb){
+    var html = fs.readFileSync(index);
+    res.writeHeader(200, {"Content-type":"text/html"});
+    res.write(html); 
+    res.end();
+
+    return cb();  
 });
+
+app.post('/update_state', function(req, res, cb){
+    stateHandler(req.body, function(data){
+        res.send(data);
+        return cb();
+    });
+});
+
 
 app.get('/get_question_form', function(req, res, cb){
     questionForm('/ajouter_question', function(form){
-        res.writeHeader(200, {"Content-type":"text/html"});
-        res.write(form);
-        res.end;
-
+        res.send(form);
         return cb();
     });
 }); 
 
 app.post('/ajouter_question', function(req, res,cb){
-    var question = new questionTemplate(req.body.subject, req.body.type, req.body.level, req.body.question, req.body.answer);
-    var obj = question.toObj();
-    res.send(obj); 
+    questionDB.add(req.body);
+    res.send('OK'); 
 });
 
 app.get('/get_quest_form', function(req, res, cb){
     queteForm('/ajouter_quete', function(form){
-        res.writeHeader(200, {"Content-type":"text/html"});
-        res.write(form);
-        res.end;
-
+        res.send(form);
         return cb();
     });
 });
 
 app.post('/ajouter_quete', function(req, res, cb){
     questEngine.add(req.body);
-    
-    res.writeHeader(200, {"Content-type":"application/json"});
-    res.write();
-    res.end;
+    res.send('OK');
 
     return cb();
 });
@@ -72,10 +71,7 @@ app.get('/get_quests', function(req, res, cb){
 
 app.post('/importer_db', function(req, res, cb){
     questionDB.import(req.body, function(result){
-        res.writeHeader(200, {"Content-type":"text/html"});
-        res.write(result);
-        res.end;
-
+        res.send(result);
         return cb();
     });
 });
