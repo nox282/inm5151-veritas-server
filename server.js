@@ -1,9 +1,11 @@
-var express = require('express'); 
-var bodyParser = require('body-parser'); 
-var stateHandler = require('./lib/state_handler.js'); 
-var questionTemplate = require('./lib/question_template.js');
-var questionDB = require('./lib/question_db.js');
-var queteForm = require('./lib/quest_form.js');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    stateHandler = require('./lib/state_handler.js'),
+    questionTemplate = require('./lib/question_template.js'),
+    questionDB = require('./lib/question_db.js'),
+    queteForm = require('./lib/quest_form.js'),
+    questEngine = require('./lib/quest_engine.js');
+
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000)); 
@@ -40,8 +42,21 @@ app.get('/get_quest_form', function(req, res, cb){
 });
 
 app.post('/ajouter_quete', function(req, res, cb){
-    console.log(req.body);
+    questEngine.add(req.body);
+    
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write();
     res.end;
+
+    return cb();
+});
+
+app.get('/get_quests', function(req, res, cb){
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(JSON.stringify(questEngine.quests, null, 2));
+    res.end;
+
+    return cb();
 });
 
 app.post('/importer_db', function(req, res, cb){
@@ -67,9 +82,3 @@ app.get('/exporter_db', function(req, res, cb){
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });
-
-
-for(var i = 0; i < 10; i++){
-    var question = new questionTemplate("maths", "qcm", "facile", "1+1", "2");
-    questionDB.add(question.toObj());
-}
