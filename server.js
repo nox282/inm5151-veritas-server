@@ -36,51 +36,49 @@ app.post('/update_state', function(req, res, cb){
 
 
 app.get('/get_question_form', function(req, res, cb){
-    questionForm('/ajouter_question', function(form){
+    questionForm('/add_question', function(form){
         res.send(form);
         return cb();
     });
 }); 
 
-app.post('/ajouter_question', function(req, res,cb){
+app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
-    res.send('OK'); 
+    res.redirect('/index'); 
 });
 
 app.get('/get_quest_form', function(req, res, cb){
-    queteForm('/ajouter_quete', function(form){
+    queteForm('/add_quete', function(form){
         res.send(form);
         return cb();
     });
 });
 
-app.post('/ajouter_quete', function(req, res, cb){
+app.post('/add_quete', function(req, res, cb){
     questEngine.add(req.body);
-    res.send('OK');
-
-    return cb();
+    res.redirect('/index');
 });
 
 app.get('/get_quests', function(req, res, cb){
     res.writeHeader(200, {"Content-type":"application/json"});
     res.write(JSON.stringify(questEngine.quests, null, 2));
-    res.end;
+    res.end();
 
     return cb();
 });
 
-app.post('/importer_db', function(req, res, cb){
+app.post('/import_db', function(req, res, cb){
     questionDB.import(req.body, function(result){
         res.send(result);
         return cb();
     });
 });
 
-app.get('/exporter_db', function(req, res, cb){
+app.get('/export_db', function(req, res, cb){
     questionDB.export(function(db){
         res.writeHeader(200, {"Content-type":"application/json"});
         res.write(db);
-        res.end;
+        res.end();
 
         return cb();
     });

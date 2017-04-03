@@ -1,138 +1,77 @@
 {
-  "ids": 10,
+  "ids": 5,
   "question_db_by_id": {
     "0": {
-      "subject": "maths",
+      "subject": "anglais",
       "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
+      "level": "moyen",
+      "question": "Is it high noon?",
+      "answer": "yes"
     },
     "1": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
+      "subject": "math",
+      "type": "courte",
+      "level": "difficile",
       "question": "1+1",
       "answer": "2"
     },
     "2": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
+      "subject": "francais",
+      "type": "longue",
+      "level": "moyen",
+      "question": "Omelette du fromage?",
+      "answer": "non"
     },
     "3": {
-      "subject": "maths",
-      "type": "qcm",
+      "subject": "math",
+      "type": "courte",
       "level": "facile",
-      "question": "1+1",
-      "answer": "2"
+      "question": "TAMAGOCHI",
+      "answer": "4125652156111"
     },
     "4": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "5": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "6": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "7": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "8": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "9": {
-      "subject": "maths",
-      "type": "qcm",
-      "level": "facile",
-      "question": "1+1",
-      "answer": "2"
+      "subject": "anglais",
+      "type": "courte",
+      "level": "difficile",
+      "question": "Are you not entertained?",
+      "answer": "Ave Ceasar"
     }
   },
   "question_db_by_sub": {
-    "maths": {
+    "anglais": {
       "0": {
         "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
+        "level": "moyen",
+        "question": "Is it high noon?",
+        "answer": "yes"
       },
+      "4": {
+        "type": "courte",
+        "level": "difficile",
+        "question": "Are you not entertained?",
+        "answer": "Ave Ceasar"
+      }
+    },
+    "math": {
       "1": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "2": {
-        "type": "qcm",
-        "level": "facile",
+        "type": "courte",
+        "level": "difficile",
         "question": "1+1",
         "answer": "2"
       },
       "3": {
-        "type": "qcm",
+        "type": "courte",
         "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "4": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "5": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "6": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "7": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "8": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
-      },
-      "9": {
-        "type": "qcm",
-        "level": "facile",
-        "question": "1+1",
-        "answer": "2"
+        "question": "TAMAGOCHI",
+        "answer": "4125652156111"
+      }
+    },
+    "francais": {
+      "2": {
+        "type": "longue",
+        "level": "moyen",
+        "question": "Omelette du fromage?",
+        "answer": "non"
       }
     }
   }
