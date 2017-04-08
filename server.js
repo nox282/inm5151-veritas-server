@@ -7,7 +7,6 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-
     index = "./lib/html/index.html";
 
 var app = express(); 
@@ -22,6 +21,15 @@ app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
     res.writeHeader(200, {"Content-type":"text/html"});
     res.write(html); 
+    res.end();
+
+    return cb();  
+});
+
+app.get('/readingjson', function(req, res, cb){
+    var obj = JSON.parse(fs.readFileSync('question_template.json', 'utf8'));
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(obj); 
     res.end();
 
     return cb();  

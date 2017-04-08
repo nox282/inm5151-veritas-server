@@ -1,0 +1,20 @@
+[{
+    "type": "Reponse courte",
+    "subject": "sujet",
+    "level": "niveau",
+    "question": "Question",
+    "answer": "reponse"
+}, {
+    "type": "Reponse a developpement",
+    "subject": "sujet",
+    "level": "niveau",
+    "question": "Question",
+    "answer": "reponse"
+}, {
+    "type": "QCM",
+    "subject": "sujet",
+    "level": "niveau",
+    "question": "Question",
+    "nb_options": "Nombre d options", 
+    "answer": "reponse"
+}]
