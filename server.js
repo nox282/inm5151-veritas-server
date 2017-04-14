@@ -4,6 +4,7 @@ var express = require('express'),
     fs = require('fs'),
     stateHandler = require('./lib/state_handler.js'),
     questionDB = require('./lib/question_db.js'),
+    generateForm = require('./lib/generate_question_form.js'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
@@ -44,11 +45,18 @@ app.post('/update_state', function(req, res, cb){
 
 
 app.get('/get_question_form', function(req, res, cb){
-    questionForm('/add_question', function(form){
+    questionForm('/generate_question_form', function(form){
         res.send(form);
         return cb();
     });
 }); 
+
+app.get('/generate_question_form', function(req, res, cb){
+    generateForm('/add_question', res.body, function(form){
+        res.send(form);
+        return cb();
+    });
+});
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
