@@ -8,15 +8,31 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html";
+    index = "./lib/html/index.html"; 
+
+    // , logger = require('morgan')
+    // , app = express()
+    // , template = require('jade').compileFile(__dirname + '/source/templates/homepage.jade'); 
+
+//app.use(logger('dev')); 
 
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000)); 
 app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/static'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
+
+// app.get('/jadetest', function (req, res, next) {
+//   try {
+//     var html = template({ title: 'Home' })
+//     res.send(html)
+//   } catch (e) {
+//     next(e)
+//   }
+// })
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
@@ -52,7 +68,8 @@ app.get('/get_question_form', function(req, res, cb){
 }); 
 
 app.get('/generate_question_form', function(req, res, cb){
-    generateForm('/add_question', res.body, function(form){
+    console.log(req.body)
+    generateForm('/add_question', req.body, function(form){
         res.send(form);
         return cb();
     });
