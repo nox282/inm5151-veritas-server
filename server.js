@@ -68,7 +68,6 @@ app.get('/get_question_form', function(req, res, cb){
 }); 
 
 app.get('/generate_question_form', function(req, res, cb){
-    console.log(req.query.type)
     generateForm('/add_question', req.query.type, function(form){
         res.send(form);
         return cb();
