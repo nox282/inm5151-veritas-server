@@ -1,14 +1,8 @@
 extends layout
 
-block test
+block questions
     div!=question_form 
+    div!=gen_question_form 
     h1= title
-    form(name="add-estimation", action="/jadereturns", method="post")
-        div.input
-            span.label Title
-            input(type="text", name="title")
-        div.input
-            span.label Description
-            textarea(name="description", cols="40", rows="5")
-        div.actions
-            input(type="submit", value="add")
+    
+block quests

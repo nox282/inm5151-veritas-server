@@ -8,8 +8,8 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html", 
-    template = require('jade').compileFile(__dirname + '/lib/html/index.jade'); 
+    index = "./lib/html/index.html" 
+    //template = require('jade').compileFile(__dirname + '/lib/html/index.jade'); 
 
 
 var app = express(); 
@@ -20,19 +20,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
-
-app.get('/jadetest', function (req, res, next) {
-
-    res.render((__dirname + '/lib/html/index.jade'), {
-        question_form: questionForm('/generate_question_form')
-    });
-}); 
-
-app.post('/jadereturns', function (req, res) {
-    console.log(req.body.title);
-    console.log(req.body.description);
-    res.send('Post page');
-});
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
@@ -61,16 +48,14 @@ app.post('/update_state', function(req, res, cb){
 
 
 app.get('/get_question_form', function(req, res, cb){
-    questionForm('/generate_question_form', function(form){
-        res.send(form);
-        return cb();
+    res.render((__dirname + '/lib/html/index.jade'), {
+        question_form: questionForm('/generate_question_form')
     });
 }); 
 
 app.get('/generate_question_form', function(req, res, cb){
-    generateForm('/add_question', req.query.type, function(form){
-        res.send(form);
-        return cb();
+    res.render((__dirname + '/lib/html/index.jade'), {
+        gen_question_form: generateForm('/add_question', req.query.type)
     });
 });
 
