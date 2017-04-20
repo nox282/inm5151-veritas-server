@@ -8,7 +8,9 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html"; 
+    index = "./lib/html/index.html", 
+    template = require('jade').compileFile(__dirname + '/lib/html/index.jade'); 
+
 
 var app = express(); 
 
@@ -17,6 +19,21 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
+
+app.get('/jadetest', function (req, res, next) {
+  try {
+    var html = template({ title: 'Home' })
+    res.send(html)
+  } catch (e) {
+    next(e)
+  }
+}); 
+
+app.post('/jadereturns', function (req, res) {
+    console.log(req.body.title);
+    console.log(req.body.description);
+    res.send('Post page');
+});
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
