@@ -4,11 +4,11 @@ var express = require('express'),
     fs = require('fs'),
     stateHandler = require('./lib/state_handler.js'),
     questionDB = require('./lib/question_db.js'),
+    generateForm = require('./lib/generate_question_form.js'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-
-    index = "./lib/html/index.html";
+    index = "./lib/html/index.html"; 
 
 var app = express(); 
 
@@ -27,6 +27,15 @@ app.get('/index', function(req, res, cb){
     return cb();  
 });
 
+app.get('/readingjson', function(req, res, cb){
+    var obj = JSON.parse(fs.readFileSync('question_template.json', 'utf8'));
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(obj); 
+    res.end();
+
+    return cb();  
+});
+
 app.post('/update_state', function(req, res, cb){
     stateHandler(req.body, function(data){
         res.send(data);
@@ -36,11 +45,18 @@ app.post('/update_state', function(req, res, cb){
 
 
 app.get('/get_question_form', function(req, res, cb){
-    questionForm('/add_question', function(form){
+    questionForm('/generate_question_form', function(form){
         res.send(form);
         return cb();
     });
 }); 
+
+app.get('/generate_question_form', function(req, res, cb){
+    generateForm('/add_question', req.query.type, function(form){
+        res.send(form);
+        return cb();
+    });
+});
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);

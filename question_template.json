@@ -1,0 +1,37 @@
+[{
+    "type": "Reponse courte",
+    "subject": "Sujet",
+    "level": "Niveau",
+    "question": "Question",
+    "answer": "Reponse"
+}, {
+    "type": "Reponse a developpement",
+    "subject": "Sujet",
+    "level": "Niveau",
+    "question": "Question",
+    "answer": "Reponse"
+}, {
+    "type": "QCM3",
+    "subject": "Sujet",
+    "level": "Niveau",
+    "question": "Question",
+    "optionA": "a)", 
+    "optionB": "b)",
+    "optionC": "c)",
+    "answer": "Reponse"
+}, {
+    "type": "QCM9",
+    "subject": "Sujet",
+    "level": "Niveau",
+    "question": "Question",
+    "optionA": "a)", 
+    "optionB": "b)",
+    "optionC": "c)",
+    "optionD": "d)", 
+    "optionE": "e)",
+    "optionF": "f)",
+    "optionG": "g)", 
+    "optionH": "h)",
+    "optionI": "i)",
+    "answer": "Reponse"
+}]
