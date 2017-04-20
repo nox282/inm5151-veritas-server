@@ -15,18 +15,17 @@ var express = require('express'),
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000)); 
+app.set('view engine', 'jade'); 
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
 app.get('/jadetest', function (req, res, next) {
-  try {
-    var html = template({ title: 'Home' })
-    res.send(html)
-  } catch (e) {
-    next(e)
-  }
+
+    res.render((__dirname + '/lib/html/index.jade'), {
+        question_form: questionForm('/generate_question_form')
+    });
 }); 
 
 app.post('/jadereturns', function (req, res) {

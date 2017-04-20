@@ -1,6 +1,7 @@
 extends layout
 
-block content
+block test
+    div!=question_form 
     h1= title
     form(name="add-estimation", action="/jadereturns", method="post")
         div.input
