@@ -10,29 +10,13 @@ var express = require('express'),
     questEngine = require('./lib/quest_engine.js'),
     index = "./lib/html/index.html"; 
 
-    // , logger = require('morgan')
-    // , app = express()
-    // , template = require('jade').compileFile(__dirname + '/source/templates/homepage.jade'); 
-
-//app.use(logger('dev')); 
-
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000)); 
 app.use(express.static(__dirname + '/public'));
-//app.use(express.static(__dirname + '/static'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
-
-// app.get('/jadetest', function (req, res, next) {
-//   try {
-//     var html = template({ title: 'Home' })
-//     res.send(html)
-//   } catch (e) {
-//     next(e)
-//   }
-// })
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
