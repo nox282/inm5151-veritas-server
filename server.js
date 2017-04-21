@@ -8,15 +8,34 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html"; 
+    index = "./lib/html/index.html",
+    socketPORT = 5001,
+    serverPORT = 5000; 
 
-var app = express(); 
+var app = express();
 
-app.set('port', (process.env.PORT || 5000)); 
+app.set('port', (process.env.PORT || serverPORT)); 
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
+
+//SOCKET.IO #######################################################
+//var http = require('http').Server(app);
+var io = require('socket.io')({
+    transports: ['websocket']
+});
+
+io.listen(socketPORT);
+console.log('Server socket listens on %', socketPORT);
+
+io.on("connection", function(socket){
+    socket.on("Move", function(pos){
+        console.log(pos);
+    });
+});
+
+//EXPRESS #########################################################
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
