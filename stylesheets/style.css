@@ -15,7 +15,20 @@ body {
 .header {
     background-color: white;
     text-align: center;
+
     //border: 1px solid blue;
+}
+
+.logo {
+    width: 200px;
+    height: 110px;
+    display: inline-block;
+}
+
+.logo img{
+    margin-top: 10%; 
+    width: 100%;
+    height: auto;
 }
 
 p {
