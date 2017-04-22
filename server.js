@@ -52,7 +52,7 @@ app.get('/main', function(req, res, cb){
         question_form: questionForm('/generate_question_form'), 
         quest_form: queteForm('/add_quete'), 
         question_db: JSON.stringify(questionDB.questions, null, 2), 
-        quest_db: JSON.stringify(questEngine.quests, null, 3)
+        quest_db: JSON.stringify(questEngine.quests, null, 2)
     });
 }); 
 
