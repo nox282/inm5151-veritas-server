@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
 //SOCKET.IO #######################################################
-//var http = require('http').Server(app);
 var io = require('socket.io')({
     transports: ['websocket']
 });
@@ -31,9 +30,11 @@ console.log('Server socket listens on %', socketPORT);
 
 io.on("connection", function(socket){
     socket.on("Move", function(pos){
-        console.log(pos);
+        io.emit("Dispatch", pos);
     });
 });
+
+
 
 //EXPRESS #########################################################
 
