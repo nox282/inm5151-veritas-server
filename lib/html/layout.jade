@@ -9,13 +9,22 @@ html
     
     div.nav   
       ul.nav
-        li: a(href='#admin') Admin
+        li: a(href='/get_question_form') Admin
         li: a(href='#statistics') Statistics
         li: a(href='#game') Game
 
-    #admin.main-content
-      block questions
-      block quests
+    .main-content
+      div.wrap
+        div.form#questions
+          #form-title Ajouter une question
+          div.formbox
+            block questions
+        div.form#quests
+          #form-title Ajouter une quete
+          div.formbox
+            block quests
+        div.form#bd-questions
+        div.form#bd-quete
 
     .footer
       p Copyright © Veritas Projet.

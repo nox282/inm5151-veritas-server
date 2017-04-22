@@ -1,10 +1,21 @@
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #EBEBF0;
+    border: 1px solid yellow;
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
 }
 
 .header {
     background-color: white;
     text-align: center;
+    border: 1px solid blue;
 }
 
 p {
@@ -18,6 +29,7 @@ div.nav {
     padding: 0;
     overflow: hidden;
     background-color: #f3f3f3;
+    border: 1px solid pink;
 }
 
 ul {
@@ -41,10 +53,100 @@ li a {
 }
 
 li a:hover:not(.active) {
+    color: white;
     background-color: #4CAF50;
 }
 
 li a.active {
     color: white;
     background-color: #4CAF50;
+}
+
+/*** Main content ***/
+
+.main-content {
+    border: 1px solid green;
+    padding: 25px;
+    margin: 0 auto;
+    width: 100%; 
+    height: 600px; 
+    overflow: auto; 
+}
+
+.wrap {
+    margin: 0 auto;
+    border: 1px solid pink;
+}
+
+.form {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    height: 550px; 
+    width: 350px;
+    float: left;
+    overflow: auto; 
+}
+
+#form-title {
+    font-family: verdana;
+    font-size: 25px;
+    color: #4CAF50;
+}
+
+.formbox {
+    border: 2px solid orange;
+    margin-top: 10px; 
+    padding: 10px; 
+}
+
+/* Forms */
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+.footer {
+    border: 1px solid red;
+    margin: 5;
+    padding: 5;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center; 
 }
