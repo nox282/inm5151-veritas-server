@@ -84,7 +84,7 @@ app.get('/get_quest_form', function(req, res, cb){
 
 app.post('/add_quete', function(req, res, cb){
     questEngine.add(req.body);
-    res.redirect('/index');
+    res.redirect('/main');
 });
 
 app.get('/get_quests', function(req, res, cb){
