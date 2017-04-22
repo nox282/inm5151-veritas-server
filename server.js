@@ -48,12 +48,11 @@ app.post('/update_state', function(req, res, cb){
 });
 
 app.get('/main', function(req, res, cb){
-    //JSON.stringify(current_DB, null, 2);
     res.render((__dirname + '/lib/html/index.jade'), {
         question_form: questionForm('/generate_question_form'), 
         quest_form: queteForm('/add_quete'), 
         question_db: JSON.stringify(questionDB.questions, null, 2), 
-        quest_db: JSON.stringify(questEngine.quests, null, 2)
+        quest_db: JSON.stringify(questEngine.quests, null, 3)
     });
 }); 
 
@@ -67,7 +66,10 @@ app.get('/main', function(req, res, cb){
 
 app.get('/generate_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
-        gen_question_form: generateForm('/add_question', req.query.type)
+        gen_question_form: generateForm('/add_question', req.query.type),
+        quest_form: queteForm('/add_quete'), 
+        question_db: JSON.stringify(questionDB.questions, null, 2), 
+        quest_db: JSON.stringify(questEngine.quests, null, 3)
     });
 });
 
