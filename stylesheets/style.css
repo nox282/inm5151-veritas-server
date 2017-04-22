@@ -1,0 +1,50 @@
+body {
+    background-color: #EBEBF0;
+}
+
+.header {
+    background-color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+div.nav {
+    text-align: center; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    display: inline-block;
+}
+
+li {
+    float: left;
+    border: 1px solid #e7e7e7;
+    width: 10em;
+}
+
+li a {
+    display: block;
+    color: #3D3D3D;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #4CAF50;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}

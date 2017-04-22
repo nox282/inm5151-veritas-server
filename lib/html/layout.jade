@@ -1,15 +1,21 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/css/index.css')
-    title World Wide Web
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    title Veritas
   body
     .header
-      h1.page-title World Wide Web
+      img#logo(src="/stylesheets/veritaslogo.png" alt="Image Title")
     
-    .main-content
+    div.nav   
+      ul.nav
+        li: a(href='#admin') Admin
+        li: a(href='#statistics') Statistics
+        li: a(href='#game') Game
+
+    #admin.main-content
       block questions
       block quests
 
     .footer
-      p Copyright © 2020 Futurecorpz. Futurecorpz ® is a Registered Trademark of Futures (un)Ltd. in the Mars Community and other solar systems.
+      p Copyright © Veritas Projet.

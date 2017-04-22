@@ -17,6 +17,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000)); 
 app.set('view engine', 'jade'); 
 app.use(express.static(__dirname + '/public'));
+app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
@@ -46,28 +47,39 @@ app.post('/update_state', function(req, res, cb){
     });
 });
 
+app.get('/main', function(req, res, cb){
+    res.render((__dirname + '/lib/html/index.jade'), {
+        question_form: questionForm('/generate_question_form'), 
+        quest_form: queteForm('/add_quete')
+    });
+}); 
+
 
 app.get('/get_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
-        question_form: questionForm('/generate_question_form')
+        question_form: questionForm('/generate_question_form'), 
+        //question_db: questionDB.by_id
     });
 }); 
 
 app.get('/generate_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
-        gen_question_form: generateForm('/add_question', req.query.type)
+        gen_question_form: generateForm('/add_question', req.query.type), 
+        quest_form: queteForm('/add_quete')
     });
 });
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
-    res.redirect('/index'); 
+    res.render((__dirname + '/lib/html/index.jade'), {
+        question_form: questionForm('/generate_question_form')
+    });
 });
 
 app.get('/get_quest_form', function(req, res, cb){
-    queteForm('/add_quete', function(form){
-        res.send(form);
-        return cb();
+    
+    res.render((__dirname + '/lib/html/index.jade'), {
+        quest_form: queteForm('/add_quete')
     });
 });
 
