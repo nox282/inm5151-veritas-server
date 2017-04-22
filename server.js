@@ -50,30 +50,29 @@ app.post('/update_state', function(req, res, cb){
 app.get('/main', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
         question_form: questionForm('/generate_question_form'), 
-        quest_form: queteForm('/add_quete')
+        quest_form: queteForm('/add_quete'), 
+        question_db: questionDB.questions, 
+        quest_db: questEngine.quests
     });
 }); 
 
 
-app.get('/get_question_form', function(req, res, cb){
-    res.render((__dirname + '/lib/html/index.jade'), {
-        question_form: questionForm('/generate_question_form'), 
-        //question_db: questionDB.by_id
-    });
-}); 
+// app.get('/get_question_form', function(req, res, cb){
+//     res.render((__dirname + '/lib/html/index.jade'), {
+//         question_form: questionForm('/generate_question_form'), 
+//         //question_db: questionDB.by_id
+//     });
+// }); 
 
 app.get('/generate_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
-        gen_question_form: generateForm('/add_question', req.query.type), 
-        quest_form: queteForm('/add_quete')
+        gen_question_form: generateForm('/add_question', req.query.type)
     });
 });
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
-    res.render((__dirname + '/lib/html/index.jade'), {
-        question_form: questionForm('/generate_question_form')
-    });
+    res.redirect('/main');
 });
 
 app.get('/get_quest_form', function(req, res, cb){
@@ -91,6 +90,14 @@ app.post('/add_quete', function(req, res, cb){
 app.get('/get_quests', function(req, res, cb){
     res.writeHeader(200, {"Content-type":"application/json"});
     res.write(JSON.stringify(questEngine.quests, null, 2));
+    res.end();
+
+    return cb();
+});
+
+app.get('/get_questions', function(req, res, cb){
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(JSON.stringify(questionDB.questions, null, 2));
     res.end();
 
     return cb();

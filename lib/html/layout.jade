@@ -23,8 +23,15 @@ html
           #form-title Ajouter une quete
           div.formbox
             block quests
-        div.form#bd-questions
-        div.form#bd-quete
+        div.form#question-db
+          #form-title Questions disponibles
+          div.formbox
+            block question_db
+        div.form#quete-db
+          #form-title Quetes disponibles
+          div.formbox
+            block quest_db
+
 
     .footer
       p Copyright © Veritas Projet.
