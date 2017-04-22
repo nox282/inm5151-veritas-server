@@ -48,11 +48,12 @@ app.post('/update_state', function(req, res, cb){
 });
 
 app.get('/main', function(req, res, cb){
+    //JSON.stringify(current_DB, null, 2);
     res.render((__dirname + '/lib/html/index.jade'), {
         question_form: questionForm('/generate_question_form'), 
         quest_form: queteForm('/add_quete'), 
-        question_db: questionDB.questions, 
-        quest_db: questEngine.quests
+        question_db: JSON.stringify(questionDB.questions, null, 2), 
+        quest_db: JSON.stringify(questEngine.quests, null, 2)
     });
 }); 
 
@@ -75,33 +76,33 @@ app.post('/add_question', function(req, res,cb){
     res.redirect('/main');
 });
 
-app.get('/get_quest_form', function(req, res, cb){
+// app.get('/get_quest_form', function(req, res, cb){
     
-    res.render((__dirname + '/lib/html/index.jade'), {
-        quest_form: queteForm('/add_quete')
-    });
-});
+//     res.render((__dirname + '/lib/html/index.jade'), {
+//         quest_form: queteForm('/add_quete')
+//     });
+// });
 
 app.post('/add_quete', function(req, res, cb){
     questEngine.add(req.body);
     res.redirect('/main');
 });
 
-app.get('/get_quests', function(req, res, cb){
-    res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(JSON.stringify(questEngine.quests, null, 2));
-    res.end();
+// app.get('/get_quests', function(req, res, cb){
+//     res.writeHeader(200, {"Content-type":"application/json"});
+//     res.write(JSON.stringify(questEngine.quests, null, 2));
+//     res.end();
 
-    return cb();
-});
+//     return cb();
+// });
 
-app.get('/get_questions', function(req, res, cb){
-    res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(JSON.stringify(questionDB.questions, null, 2));
-    res.end();
+// app.get('/get_questions', function(req, res, cb){
+//     res.writeHeader(200, {"Content-type":"application/json"});
+//     res.write(JSON.stringify(questionDB.questions, null, 2));
+//     res.end();
 
-    return cb();
-});
+//     return cb();
+// });
 
 app.post('/import_db', function(req, res, cb){
     questionDB.import(req.body, function(result){
