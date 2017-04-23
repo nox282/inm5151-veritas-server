@@ -37,15 +37,6 @@ app.get('/main', function(req, res, cb){
     return cb();  
 });
 
-app.get('/readingjson', function(req, res, cb){
-    var obj = JSON.parse(fs.readFileSync('question_template.json', 'utf8'));
-    res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(obj); 
-    res.end();
-
-    return cb();  
-});
-
 app.post('/update_state', function(req, res, cb){
     stateHandler(req.body, function(data){
         res.send(data);
