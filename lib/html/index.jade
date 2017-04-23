@@ -1,0 +1,18 @@
+extends layout
+
+block questions
+    div!=question_form 
+    div!=gen_question_form 
+
+block quests
+    h1= title
+    div!=quest_form
+
+block question_db 
+    h1= title
+    pre!=question_db
+
+block quest_db
+    h1= title
+    pre!=quest_db
+

@@ -19,6 +19,8 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.0",
+    "express-fileupload": "^0.1.2",
+    "file-reader": "^1.1.1",
     "form-builder": "0.0.1",
     "fs": "0.0.1-security",
     "jade": "^1.11.0",

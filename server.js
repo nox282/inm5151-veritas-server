@@ -8,18 +8,22 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html",
     socketPORT = 5001,
     serverPORT = 5000; 
+    index = "./lib/html/index.html", 
+    fileUpload = require('express-fileupload')
 
 var app = express();
 
 app.set('port', (process.env.PORT || serverPORT)); 
+app.set('view engine', 'jade'); 
 app.use(express.static(__dirname + '/public'));
+app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
+<<<<<<< HEAD
 //SOCKET.IO #######################################################
 var io = require('socket.io')({
     transports: ['websocket']
@@ -38,21 +42,18 @@ io.on("connection", function(socket){
 
 //EXPRESS #########################################################
 
-app.get('/index', function(req, res, cb){
-    var html = fs.readFileSync(index);
-    res.writeHeader(200, {"Content-type":"text/html"});
-    res.write(html); 
-    res.end();
+app.use("/TemplateData",express.static(__dirname + "/TemplateData"));
+app.use("/Release",express.static(__dirname + "/Release"));
 
+app.use(fileUpload());
+
+app.get('/', function(req, res, cb){
+    res.redirect('/index')
     return cb();  
 });
 
-app.get('/readingjson', function(req, res, cb){
-    var obj = JSON.parse(fs.readFileSync('question_template.json', 'utf8'));
-    res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(obj); 
-    res.end();
-
+app.get('/main', function(req, res, cb){
+    res.redirect('/index')
     return cb();  
 });
 
@@ -63,31 +64,27 @@ app.post('/update_state', function(req, res, cb){
     });
 });
 
-
-app.get('/get_question_form', function(req, res, cb){
-    questionForm('/generate_question_form', function(form){
-        res.send(form);
-        return cb();
+app.get('/index', function(req, res, cb){
+    res.render((__dirname + '/lib/html/index.jade'), {
+        question_form: questionForm('/generate_question_form'), 
+        quest_form: queteForm('/add_quete'), 
+        question_db: JSON.stringify(questionDB.questions(), null, 2), 
+        quest_db: JSON.stringify(questEngine.quests(), null, 2)
     });
 }); 
 
 app.get('/generate_question_form', function(req, res, cb){
-    generateForm('/add_question', req.query.type, function(form){
-        res.send(form);
-        return cb();
+    res.render((__dirname + '/lib/html/index.jade'), {
+        gen_question_form: generateForm('/add_question', req.query.type),
+        quest_form: queteForm('/add_quete'), 
+        question_db: JSON.stringify(questionDB.questions, null, 2), 
+        quest_db: JSON.stringify(questEngine.quests, null, 2)
     });
 });
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
-    res.redirect('/index'); 
-});
-
-app.get('/get_quest_form', function(req, res, cb){
-    queteForm('/add_quete', function(form){
-        res.send(form);
-        return cb();
-    });
+    res.redirect('/index');
 });
 
 app.post('/add_quete', function(req, res, cb){
@@ -103,21 +100,31 @@ app.get('/get_quests', function(req, res, cb){
     return cb();
 });
 
-app.post('/import_db', function(req, res, cb){
-    questionDB.import(req.body, function(result){
-        res.send(result);
-        return cb();
-    });
+app.get('/get_questions', function(req, res, cb){
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(JSON.stringify(questionDB.questions, null, 2));
+    res.end();
+
+    return cb();
 });
 
-app.get('/export_db', function(req, res, cb){
-    questionDB.export(function(db){
-        res.writeHeader(200, {"Content-type":"application/json"});
-        res.write(db);
-        res.end();
-
-        return cb();
+app.post('/import_db', function(req, res, cb){
+    fs.readFile(req.files.loaded_db.name, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      questionDB.import(JSON.parse(data)); 
+      res.redirect('/index');
     });
+    
+});
+
+app.get('/game', function(req, res, cb){
+    res.render((__dirname + '/lib/html/game.jade'));
+});
+
+app.get('/statistics', function(req, res, cb){
+    res.render((__dirname + '/lib/html/statistics.jade'));
 });
 
 app.listen(app.get('port'), function() {

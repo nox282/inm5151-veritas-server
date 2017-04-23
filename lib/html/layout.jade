@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    title Veritas
+  body
+    .header
+      .logo
+        img.logo(src="/stylesheets/veritaslogo.png" alt="Image Title")
+    
+    div.nav   
+      ul.nav
+        li: a(href='/index') Admin
+        li: a(href='/statistics') Statistics
+        li: a(href='/game') Game
+
+    .main-content
+      div.wrap
+        div.form#questions
+          #form-title Ajouter une question
+          div.formbox
+            block questions
+        div.form#quests
+          #form-title Ajouter une quete
+          div.formbox
+            block quests
+        div.form#question-db
+          #form-title Questions disponibles
+          form(action='/import_db', id='import-questions-form', method='post', enctype='multipart/form-data') 
+            input(type="file",name="loaded_db")
+            input(type='submit', value='Importer questions')
+          div.formbox
+            block question_db
+        div.form#quete-db
+          #form-title Quetes disponibles
+          div.formbox
+            block quest_db
+
+    .footer
+      p Copyright © Veritas 
+      p Developped by Giulia Cantoni, Samuel Pilon and Nicolas Hamard
