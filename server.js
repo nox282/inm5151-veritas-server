@@ -22,6 +22,9 @@ app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
+app.use("/TemplateData",express.static(__dirname + "/TemplateData"));
+app.use("/Release",express.static(__dirname + "/Release"));
+
 app.use(fileUpload());
 
 app.get('/', function(req, res, cb){
@@ -78,21 +81,21 @@ app.post('/add_quete', function(req, res, cb){
     res.redirect('/index');
 });
 
-// app.get('/get_quests', function(req, res, cb){
-//     res.writeHeader(200, {"Content-type":"application/json"});
-//     res.write(JSON.stringify(questEngine.quests, null, 2));
-//     res.end();
+app.get('/get_quests', function(req, res, cb){
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(JSON.stringify(questEngine.quests, null, 2));
+    res.end();
 
-//     return cb();
-// });
+    return cb();
+});
 
-// app.get('/get_questions', function(req, res, cb){
-//     res.writeHeader(200, {"Content-type":"application/json"});
-//     res.write(JSON.stringify(questionDB.questions, null, 2));
-//     res.end();
+app.get('/get_questions', function(req, res, cb){
+    res.writeHeader(200, {"Content-type":"application/json"});
+    res.write(JSON.stringify(questionDB.questions, null, 2));
+    res.end();
 
-//     return cb();
-// });
+    return cb();
+});
 
 app.post('/import_db', function(req, res, cb){
     fs.readFile(req.files.loaded_db.name, 'utf8', function (err,data) {
