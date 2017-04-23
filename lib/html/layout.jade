@@ -26,7 +26,7 @@ html
             block quests
         div.form#question-db
           #form-title Questions disponibles
-          form(action='/import_db', id='import-questions-form', method='post') 
+          form(action='/import_db', id='import-questions-form', method='post', enctype='multipart/form-data') 
             input(type="file",name="loaded_db")
             input(type='submit', value='Importer questions')
           div.formbox

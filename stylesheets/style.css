@@ -90,7 +90,7 @@ li a.active {
 .wrap {
     margin: 0 auto;
     display: inline-block;
-    text-align: left;
+    text-align: left; 
     //border: 1px solid pink;
 }
 

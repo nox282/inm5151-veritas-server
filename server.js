@@ -8,7 +8,8 @@ var express = require('express'),
     questionForm = require('./lib/question_form.js'),
     queteForm = require('./lib/quest_form.js'),
     questEngine = require('./lib/quest_engine.js'),
-    index = "./lib/html/index.html" 
+    index = "./lib/html/index.html", 
+    fileUpload = require('express-fileupload')
     //template = require('jade').compileFile(__dirname + '/lib/html/index.jade'); 
 
 
@@ -21,6 +22,8 @@ app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
+
+app.use(fileUpload());
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
@@ -106,11 +109,19 @@ app.post('/add_quete', function(req, res, cb){
 //     return cb();
 // });
 
-app.post('/import_db', function(req, res, cb){
-    console.log(req.body.loaded_db); 
+app.post('/import_db', function(req, res){
 
-    var data = questionDB.readFile(req.body.loaded_db);
-    questionDB.import(data); 
+    console.log(req.files.loaded_db.name);
+    fs.readFile(req.files.loaded_db.name, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(data);
+      questionDB.import(data); 
+    });
+
+    console.log(req.files.loaded_db.name);
+    // questionDB.import(data); 
     console.log("completee"); 
     res.redirect('/main');
 });
