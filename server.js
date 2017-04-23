@@ -69,7 +69,7 @@ app.get('/generate_question_form', function(req, res, cb){
         gen_question_form: generateForm('/add_question', req.query.type),
         quest_form: queteForm('/add_quete'), 
         question_db: JSON.stringify(questionDB.questions, null, 2), 
-        quest_db: JSON.stringify(questEngine.quests, null, 3)
+        quest_db: JSON.stringify(questEngine.quests, null, 2)
     });
 });
 
@@ -107,13 +107,12 @@ app.post('/add_quete', function(req, res, cb){
 // });
 
 app.post('/import_db', function(req, res, cb){
-    questionDB.import(req.body); 
+    console.log(req.body.loaded_db); 
+
+    var data = questionDB.readFile(req.body.loaded_db);
+    questionDB.import(data); 
     console.log("completee"); 
     res.redirect('/main');
-    // questionDB.import(req.body, function(result){
-    //     res.send(result);
-    //     return cb();
-    // });
 });
 
 app.get('/export_db', function(req, res, cb){
