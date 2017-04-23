@@ -125,6 +125,10 @@ app.get('/export_db', function(req, res, cb){
     });
 });
 
+app.get('/game', function(req, res, cb){
+    res.render((__dirname + '/lib/html/game.jade'));
+});
+
 app.listen(app.get('port'), function() {
     console.log("le serveur ecoute sur %s", app.get('port')); 
 });

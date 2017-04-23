@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    title Veritas
+  body
+    .header
+      .logo
+        img.logo(src="/stylesheets/veritaslogo.png" alt="Image Title")
+    
+    div.nav   
+      ul.nav
+        li: a(href='/main') Admin
+        li: a(href='#statistics') Statistics
+        li: a(href='/game') Game
+
+    .main-content
+      div#game-window
+        include game.html
+
+
+    .footer
+      p Copyright © Veritas 
+      p Developped by Giulia Cantoni, Samuel Pilon and Nicolas Hamard
