@@ -10,7 +10,6 @@ var express = require('express'),
     questEngine = require('./lib/quest_engine.js'),
     index = "./lib/html/index.html", 
     fileUpload = require('express-fileupload')
-    //template = require('jade').compileFile(__dirname + '/lib/html/index.jade'); 
 
 
 var app = express(); 
@@ -24,6 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
 app.use(fileUpload());
+
+app.get('/', function(req, res, cb){
+    res.redirect('/main')
+    return cb();  
+});
 
 app.get('/index', function(req, res, cb){
     var html = fs.readFileSync(index);
@@ -54,8 +58,8 @@ app.get('/main', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
         question_form: questionForm('/generate_question_form'), 
         quest_form: queteForm('/add_quete'), 
-        question_db: JSON.stringify(questionDB.questions, null, 2), 
-        quest_db: JSON.stringify(questEngine.quests, null, 2)
+        question_db: JSON.stringify(questionDB.questions(), null, 2), 
+        quest_db: JSON.stringify(questEngine.quests(), null, 2)
     });
 }); 
 
@@ -109,7 +113,7 @@ app.post('/add_quete', function(req, res, cb){
 //     return cb();
 // });
 
-app.post('/import_db', function(req, res){
+app.post('/import_db', function(req, res, cb){
 
     console.log(req.files.loaded_db.name);
     fs.readFile(req.files.loaded_db.name, 'utf8', function (err,data) {
@@ -117,13 +121,14 @@ app.post('/import_db', function(req, res){
         return console.log(err);
       }
       console.log(data);
-      questionDB.import(data); 
+      questionDB.import(JSON.parse(data)); 
+      res.redirect('/main');
     });
 
     console.log(req.files.loaded_db.name);
     // questionDB.import(data); 
     console.log("completee"); 
-    res.redirect('/main');
+    
 });
 
 app.get('/export_db', function(req, res, cb){
