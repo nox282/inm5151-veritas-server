@@ -23,8 +23,8 @@ app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
-<<<<<<< HEAD
-//SOCKET.IO #######################################################
+//SOCKET.IO
+
 var io = require('socket.io')({
     transports: ['websocket']
 });
@@ -38,9 +38,7 @@ io.on("connection", function(socket){
     });
 });
 
-
-
-//EXPRESS #########################################################
+//EXPRESS
 
 app.use("/TemplateData",express.static(__dirname + "/TemplateData"));
 app.use("/Release",express.static(__dirname + "/Release"));
