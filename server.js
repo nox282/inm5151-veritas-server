@@ -25,16 +25,12 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(fileUpload());
 
 app.get('/', function(req, res, cb){
-    res.redirect('/main')
+    res.redirect('/index')
     return cb();  
 });
 
-app.get('/index', function(req, res, cb){
-    var html = fs.readFileSync(index);
-    res.writeHeader(200, {"Content-type":"text/html"});
-    res.write(html); 
-    res.end();
-
+app.get('/main', function(req, res, cb){
+    res.redirect('/index')
     return cb();  
 });
 
@@ -54,7 +50,7 @@ app.post('/update_state', function(req, res, cb){
     });
 });
 
-app.get('/main', function(req, res, cb){
+app.get('/index', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
         question_form: questionForm('/generate_question_form'), 
         quest_form: queteForm('/add_quete'), 
@@ -62,14 +58,6 @@ app.get('/main', function(req, res, cb){
         quest_db: JSON.stringify(questEngine.quests(), null, 2)
     });
 }); 
-
-
-// app.get('/get_question_form', function(req, res, cb){
-//     res.render((__dirname + '/lib/html/index.jade'), {
-//         question_form: questionForm('/generate_question_form'), 
-//         //question_db: questionDB.by_id
-//     });
-// }); 
 
 app.get('/generate_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
@@ -82,19 +70,12 @@ app.get('/generate_question_form', function(req, res, cb){
 
 app.post('/add_question', function(req, res,cb){
     questionDB.add(req.body);
-    res.redirect('/main');
+    res.redirect('/index');
 });
-
-// app.get('/get_quest_form', function(req, res, cb){
-    
-//     res.render((__dirname + '/lib/html/index.jade'), {
-//         quest_form: queteForm('/add_quete')
-//     });
-// });
 
 app.post('/add_quete', function(req, res, cb){
     questEngine.add(req.body);
-    res.redirect('/main');
+    res.redirect('/index');
 });
 
 // app.get('/get_quests', function(req, res, cb){
@@ -114,31 +95,14 @@ app.post('/add_quete', function(req, res, cb){
 // });
 
 app.post('/import_db', function(req, res, cb){
-
-    console.log(req.files.loaded_db.name);
     fs.readFile(req.files.loaded_db.name, 'utf8', function (err,data) {
       if (err) {
         return console.log(err);
       }
-      console.log(data);
       questionDB.import(JSON.parse(data)); 
-      res.redirect('/main');
+      res.redirect('/index');
     });
-
-    console.log(req.files.loaded_db.name);
-    // questionDB.import(data); 
-    console.log("completee"); 
     
-});
-
-app.get('/export_db', function(req, res, cb){
-    questionDB.export(function(db){
-        res.writeHeader(200, {"Content-type":"application/json"});
-        res.write(db);
-        res.end();
-
-        return cb();
-    });
 });
 
 app.get('/game', function(req, res, cb){
