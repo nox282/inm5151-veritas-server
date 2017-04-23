@@ -107,10 +107,13 @@ app.post('/add_quete', function(req, res, cb){
 // });
 
 app.post('/import_db', function(req, res, cb){
-    questionDB.import(req.body, function(result){
-        res.send(result);
-        return cb();
-    });
+    questionDB.import(req.body); 
+    console.log("completee"); 
+    res.redirect('/main');
+    // questionDB.import(req.body, function(result){
+    //     res.send(result);
+    //     return cb();
+    // });
 });
 
 app.get('/export_db', function(req, res, cb){
