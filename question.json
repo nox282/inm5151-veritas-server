@@ -1,81 +1,19 @@
 {
-  "ids": 5,
+  "ids": 1,
   "question_db_by_id": {
     "0": {
-      "subject": "anglais",
-      "type": "qcm",
-      "level": "facile",
-      "question": "Traduire \"Haut\"",
-      "answer": "High"
-    },
-    "1": {
       "subject": "math",
-      "type": "courte",
-      "level": "difficile",
-      "question": "1+1",
-      "answer": "2"
-    },
-    "2": {
-      "subject": "francais",
-      "type": "longue",
-      "level": "moyen",
-      "question": "Corrigez les fautes : Les fleur son belle",
-      "answer": "Les fleurs sont belles"
-    },
-    "3": {
-      "subject": "math",
-      "type": "courte",
       "level": "facile",
-      "question": "25+12",
-      "answer": "37"
-    },
-    "4": {
-      "subject": "anglais",
-      "type": "courte",
-      "level": "difficile",
-      "question": "Traduire \"Ordinateur\"",
-      "answer": "Computer"
+      "question": "qwe",
+      "answer": "qwe"
     }
   },
   "question_db_by_sub": {
-    "anglais": {
-      "0": {
-      "subject": "anglais",
-      "type": "qcm",
-      "level": "facile",
-      "question": "Traduire \"Haut\"",
-      "answer": "High"
-    },
-      "4": {
-      "subject": "anglais",
-      "type": "courte",
-      "level": "difficile",
-      "question": "Traduire \"Ordinateur\"",
-      "answer": "Computer"
-      }
-    },
     "math": {
-      "1": {
-      "subject": "math",
-      "type": "courte",
-      "level": "difficile",
-      "question": "1+1",
-      "answer": "2"
-    },
-      "3": {
-      "subject": "math",
-      "type": "courte",
-      "level": "facile",
-      "question": "25+12",
-      "answer": "37"
-      }
-    },
-    "2": {
-      "subject": "francais",
-      "type": "longue",
-      "level": "moyen",
-      "question": "Corrigez les fautes : Les fleur son belle",
-      "answer": "Les fleurs sont belles"
+      "0": {
+        "level": "facile",
+        "question": "qwe",
+        "answer": "qwe"
       }
     }
   }
