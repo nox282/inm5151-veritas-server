@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Veritas</title>
+    <title>Unity WebGL Player | Veritas</title>
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <script src="TemplateData/UnityProgress.js"></script>
   </head>
   <body class="template">
     <div class="template-wrap clear">
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="1070px"></canvas>
       <br>
+      <div class="logo"></div>
       <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
       <div class="title">Veritas</div>
     </div>
@@ -21,10 +23,10 @@
     compatibilitycheck: null,
     backgroundColor: "#222C36",
     splashStyle: "Light",
-    dataUrl: "Release/App3.data",
-    codeUrl: "Release/App3.js",
-    asmUrl: "Release/App3.asm.js",
-    memUrl: "Release/App3.mem",
+    dataUrl: "Release/veritas.data",
+    codeUrl: "Release/veritas.js",
+    asmUrl: "Release/veritas.asm.js",
+    memUrl: "Release/veritas.mem",
   };
 </script>
 <script src="Release/UnityLoader.js"></script>
