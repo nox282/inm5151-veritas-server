@@ -4,9 +4,9 @@
     "0": {
       "subject": "anglais",
       "type": "qcm",
-      "level": "moyen",
-      "question": "Is it high noon?",
-      "answer": "yes"
+      "level": "facile",
+      "question": "Traduire \"Haut\"",
+      "answer": "High"
     },
     "1": {
       "subject": "math",
@@ -19,59 +19,63 @@
       "subject": "francais",
       "type": "longue",
       "level": "moyen",
-      "question": "Omelette du fromage?",
-      "answer": "non"
+      "question": "Corrigez les fautes : Les fleur son belle",
+      "answer": "Les fleurs sont belles"
     },
     "3": {
       "subject": "math",
       "type": "courte",
       "level": "facile",
-      "question": "TAMAGOCHI",
-      "answer": "4125652156111"
+      "question": "25+12",
+      "answer": "37"
     },
     "4": {
       "subject": "anglais",
       "type": "courte",
       "level": "difficile",
-      "question": "Are you not entertained?",
-      "answer": "Ave Ceasar"
+      "question": "Traduire \"Ordinateur\"",
+      "answer": "Computer"
     }
   },
   "question_db_by_sub": {
     "anglais": {
       "0": {
-        "type": "qcm",
-        "level": "moyen",
-        "question": "Is it high noon?",
-        "answer": "yes"
-      },
+      "subject": "anglais",
+      "type": "qcm",
+      "level": "facile",
+      "question": "Traduire \"Haut\"",
+      "answer": "High"
+    },
       "4": {
-        "type": "courte",
-        "level": "difficile",
-        "question": "Are you not entertained?",
-        "answer": "Ave Ceasar"
+      "subject": "anglais",
+      "type": "courte",
+      "level": "difficile",
+      "question": "Traduire \"Ordinateur\"",
+      "answer": "Computer"
       }
     },
     "math": {
       "1": {
-        "type": "courte",
-        "level": "difficile",
-        "question": "1+1",
-        "answer": "2"
-      },
+      "subject": "math",
+      "type": "courte",
+      "level": "difficile",
+      "question": "1+1",
+      "answer": "2"
+    },
       "3": {
-        "type": "courte",
-        "level": "facile",
-        "question": "TAMAGOCHI",
-        "answer": "4125652156111"
+      "subject": "math",
+      "type": "courte",
+      "level": "facile",
+      "question": "25+12",
+      "answer": "37"
       }
     },
-    "francais": {
-      "2": {
-        "type": "longue",
-        "level": "moyen",
-        "question": "Omelette du fromage?",
-        "answer": "non"
+    "2": {
+      "subject": "francais",
+      "type": "longue",
+      "level": "moyen",
+      "question": "Corrigez les fautes : Les fleur son belle",
+      "answer": "Les fleurs sont belles"
       }
     }
   }
