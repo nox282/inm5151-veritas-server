@@ -75,8 +75,8 @@ app.get('/generate_question_form', function(req, res, cb){
     res.render((__dirname + '/lib/html/index.jade'), {
         gen_question_form: generateForm('/add_question', req.query.type),
         quest_form: queteForm('/add_quete'), 
-        question_db: JSON.stringify(questionDB.questions, null, 2), 
-        quest_db: JSON.stringify(questEngine.quests, null, 2)
+        question_db: JSON.stringify(questionDB.questions(), null, 2), 
+        quest_db: JSON.stringify(questEngine.quests(), null, 2)
     });
 });
 
@@ -92,7 +92,7 @@ app.post('/add_quete', function(req, res, cb){
 
 app.get('/get_quests', function(req, res, cb){
     res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(JSON.stringify(questEngine.quests, null, 2));
+    res.write(JSON.stringify(questEngine.quests(), null, 2));
     res.end();
 
     return cb();
@@ -100,7 +100,7 @@ app.get('/get_quests', function(req, res, cb){
 
 app.get('/get_questions', function(req, res, cb){
     res.writeHeader(200, {"Content-type":"application/json"});
-    res.write(JSON.stringify(questionDB.questions, null, 2));
+    res.write(JSON.stringify(questionDB.questions(), null, 2));
     res.end();
 
     return cb();
